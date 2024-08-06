@@ -1,0 +1,20 @@
+# Normalize EOL for all files that Git considers text files.
+* text=auto eol=crlf
+
+*.res binary
+*.scn binary
+*.mesh binary
+*.shape binary
+*.glb binary
+*.gltf -text
+*.blend binary
+*.jpg binary
+*.png binary
+*.webp binary
+*.svg binary
+*.ogg binary
+*.mp3 binary
+*.wav binary
+*.zip binary
+*.hdr binary
+*.exr binary

@@ -1,0 +1,5 @@
+wall.001 -> concrete
+wall -> concrete
+white emission.001 -> emissive
+light.001 -> emissive
+floor.001 -> floor

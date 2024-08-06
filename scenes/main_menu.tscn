@@ -1,0 +1,54 @@
+[gd_scene load_steps=2 format=3 uid="uid://g1vck31w0es4"]
+
+[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_fpi4m"]
+
+[node name="main_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fpi4m")
+
+[node name="center_container" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="label" type="Label" parent="center_container"]
+layout_mode = 2
+text = "The Grey Room"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="v_box_container" type="VBoxContainer" parent="center_container"]
+layout_mode = 2
+
+[node name="start" type="Button" parent="center_container/v_box_container"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Begin
+"
+
+[node name="options" type="Button" parent="center_container/v_box_container"]
+unique_name_in_owner = true
+layout_mode = 2
+disabled = true
+text = "Options"
+
+[node name="credits" type="Button" parent="center_container/v_box_container"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Credits"
+
+[node name="quit" type="Button" parent="center_container/v_box_container"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Quit"
+
+[connection signal="button_up" from="center_container/v_box_container/start" to="." method="_on_start_button_up"]
+[connection signal="button_up" from="center_container/v_box_container/quit" to="." method="_on_quit_button_up"]

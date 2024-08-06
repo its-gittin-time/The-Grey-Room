@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://yrqw50gph61y"]
+
+[ext_resource type="Shader" path="res://resources/shaders/blindness_3d.gdshader" id="1_jk80w"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_bg75g"]
+flip_faces = true
+size = Vector2(2, 2)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fct7c"]
+render_priority = 0
+shader = ExtResource("1_jk80w")
+
+[node name="shader" type="MeshInstance3D"]
+top_level = true
+extra_cull_margin = 16384.0
+custom_aabb = AABB(-10000, -10000, -10000, 20000, 20000, 20000)
+ignore_occlusion_culling = true
+gi_mode = 0
+mesh = SubResource("QuadMesh_bg75g")
+surface_material_override/0 = SubResource("ShaderMaterial_fct7c")

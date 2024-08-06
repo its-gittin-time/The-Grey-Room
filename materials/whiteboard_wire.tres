@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://3sutftdo78jj"]
+
+[ext_resource type="Texture2D" uid="uid://b6r4sah506ev1" path="res://materials/yiseraw/white_boards_room_2.jpg" id="1_re1hg"]
+
+[resource]
+albedo_texture = ExtResource("1_re1hg")
+roughness = 0.0

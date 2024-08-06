@@ -1,0 +1,345 @@
+[gd_scene load_steps=35 format=3 uid="uid://b2ebyk7r0kauk"]
+
+[ext_resource type="PackedScene" uid="uid://bigc75ae48mug" path="res://scenes/bean.tscn" id="1_0ybng"]
+[ext_resource type="Script" path="res://scripts/tutorial.gd" id="1_ck854"]
+[ext_resource type="Texture2D" uid="uid://chrlmhbrwmr0j" path="res://textures/Mat_Concrete_Gray_03-512x512.png" id="2_72u6x"]
+[ext_resource type="Environment" uid="uid://benpu7pj0ijv1" path="res://resources/indoor_environment.tres" id="3_ws6is"]
+[ext_resource type="Script" path="res://scripts/button.gd" id="5_acxut"]
+[ext_resource type="Texture2D" uid="uid://bqagck4mefo1w" path="res://textures/bluetooth.jpg" id="6_rxovx"]
+[ext_resource type="Shader" path="res://resources/shaders/outline.gdshader" id="7_emupc"]
+[ext_resource type="Texture2D" uid="uid://bm4vsp24l3csy" path="res://textures/dev/Dark/texture_06.png" id="8_56tef"]
+[ext_resource type="Texture2D" uid="uid://d0xdoubec1jg" path="res://textures/dev/Green/texture_10.png" id="9_vqnnh"]
+[ext_resource type="Script" path="res://scripts/weight.gd" id="10_4xnju"]
+[ext_resource type="Texture2D" uid="uid://cptdcpntxnruv" path="res://textures/dev/Orange/texture_02.png" id="10_8sq8w"]
+[ext_resource type="Script" path="res://scripts/surveillance_cam.gd" id="12_1ngdm"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lfrhf"]
+albedo_texture = ExtResource("2_72u6x")
+uv1_world_triplanar = true
+uv2_world_triplanar = true
+texture_filter = 5
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_c18jq"]
+height = 0.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jl15s"]
+transparency = 4
+albedo_texture = ExtResource("6_rxovx")
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5dvap"]
+render_priority = 0
+shader = ExtResource("7_emupc")
+shader_parameter/enabled = false
+shader_parameter/thickness = 1.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_b6g0a"]
+lightmap_size_hint = Vector2i(17, 11)
+add_uv2 = true
+height = 0.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t32xx"]
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+
+[sub_resource type="TextMesh" id="TextMesh_ej2gl"]
+text = "Press
+Me!"
+font_size = 24
+depth = 0.535
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_63yfr"]
+albedo_texture = ExtResource("8_56tef")
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_fjyic"]
+size = Vector3(1, 4, 4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_o8j31"]
+size = Vector3(1, 4, 4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_14ws2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m74ee"]
+render_priority = 2
+depth_draw_mode = 2
+albedo_texture = ExtResource("9_vqnnh")
+uv1_triplanar = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uianu"]
+render_priority = 1
+shader = ExtResource("7_emupc")
+shader_parameter/enabled = true
+shader_parameter/thickness = 1.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_85653"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3a8v3"]
+size = Vector3(1.5, 0.5, 1.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a1k0s"]
+albedo_texture = ExtResource("10_8sq8w")
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_k07ey"]
+size = Vector3(1.5, 0.5, 1.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ipbpr"]
+size = Vector3(1.385, 0.05, 1.392)
+
+[sub_resource type="Animation" id="Animation_te46j"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [-1.75]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../door2:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../door2:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-21.0157, 0, -16)]
+}
+
+[sub_resource type="Animation" id="Animation_vx232"]
+resource_name = "down"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-1.75, -2.2]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../door2:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 3.8]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7vqww"]
+_data = {
+"RESET": SubResource("Animation_te46j"),
+"move": SubResource("Animation_vx232")
+}
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_hi3vb"]
+top_radius = 0.35
+bottom_radius = 0.25
+
+[node name="tutorial" type="Node3D"]
+script = ExtResource("1_ck854")
+
+[node name="csg_combiner_3d" type="CSGCombiner3D" parent="."]
+material_override = SubResource("StandardMaterial3D_lfrhf")
+use_collision = true
+
+[node name="csg_box_3d" type="CSGBox3D" parent="csg_combiner_3d"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.15821, 0, -7.5321)
+size = Vector3(38.3164, 5, 35.0642)
+
+[node name="csg_box_3d2" type="CSGBox3D" parent="csg_combiner_3d"]
+operation = 2
+size = Vector3(10, 4, 10)
+
+[node name="csg_box_3d3" type="CSGBox3D" parent="csg_combiner_3d"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7.04395)
+operation = 2
+calculate_tangents = false
+size = Vector3(5, 4, 5)
+
+[node name="csg_box_3d4" type="CSGBox3D" parent="csg_combiner_3d"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+size = Vector3(5, 2.5, 0.5)
+
+[node name="csg_box_3d5" type="CSGBox3D" parent="csg_combiner_3d"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -14.8841)
+operation = 2
+size = Vector3(10, 4, 13)
+
+[node name="csg_box_3d6" type="CSGBox3D" parent="csg_combiner_3d"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -16)
+operation = 2
+size = Vector3(11.0391, 4, 3)
+
+[node name="csg_box_3d7" type="CSGBox3D" parent="csg_combiner_3d"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, -16)
+operation = 2
+size = Vector3(7.26059, 4, 9.97259)
+
+[node name="csg_box_3d8" type="CSGBox3D" parent="csg_combiner_3d"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.3588, -0.0617676, -16.1981)
+operation = 2
+size = Vector3(7.07135, 3.86963, 3.38409)
+
+[node name="bean" parent="." instance=ExtResource("1_0ybng")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 3.71338)
+
+[node name="label_3d" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0.260115)
+texture_filter = 5
+text = "Press WASD To Move"
+font_size = 72
+outline_size = 16
+
+[node name="label_3d2" type="Label3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.999, -0.5, -10.75)
+texture_filter = 5
+text = "Press buttons to
+interact with things"
+font_size = 72
+outline_size = 16
+
+[node name="omni_light_3d" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.98672, 0)
+shadow_enabled = true
+omni_range = 10.0
+
+[node name="omni_light_3d2" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.24168, -15.0882)
+omni_range = 13.6452
+
+[node name="world_environment" type="WorldEnvironment" parent="."]
+environment = ExtResource("3_ws6is")
+
+[node name="spot_light_3d" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 2, 0)
+visible = false
+shadow_enabled = true
+spot_range = 30.0
+
+[node name="buttoneeee_3d" type="AnimatableBody3D" parent="." groups=["interactable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.76016, -0.391938, -13.4285)
+collision_layer = 5
+script = ExtResource("5_acxut")
+push_direction = Vector3(1, 0, 0)
+metadata/_edit_group_ = true
+
+[node name="collision_shape_3d" type="CollisionShape3D" parent="buttoneeee_3d"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("CylinderShape3D_c18jq")
+
+[node name="mesh_instance_3d" type="MeshInstance3D" parent="buttoneeee_3d"]
+transform = Transform3D(2.98023e-08, 1, 0, -1, 2.98023e-08, 0, 0, 0, 1, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_jl15s")
+material_overlay = SubResource("ShaderMaterial_5dvap")
+mesh = SubResource("CylinderMesh_b6g0a")
+skeleton = NodePath("")
+
+[node name="mesh_instance_3d2" type="MeshInstance3D" parent="buttoneeee_3d"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_t32xx")
+mesh = SubResource("TextMesh_ej2gl")
+
+[node name="door" type="AnimatableBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -16)
+metadata/_edit_group_ = true
+
+[node name="mesh_instance_3d" type="MeshInstance3D" parent="door"]
+material_override = SubResource("StandardMaterial3D_63yfr")
+mesh = SubResource("BoxMesh_fjyic")
+skeleton = NodePath("../..")
+
+[node name="collision_shape_3d" type="CollisionShape3D" parent="door"]
+shape = SubResource("BoxShape3D_o8j31")
+
+[node name="box" type="RigidBody3D" parent="." groups=["grabbable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.59, 0, -20.0209)
+collision_layer = 4
+collision_mask = 7
+
+[node name="collision_shape_3d" type="CollisionShape3D" parent="box"]
+shape = SubResource("BoxShape3D_14ws2")
+
+[node name="mesh_instance_3d" type="MeshInstance3D" parent="box"]
+material_override = SubResource("StandardMaterial3D_m74ee")
+material_overlay = SubResource("ShaderMaterial_uianu")
+mesh = SubResource("BoxMesh_85653")
+
+[node name="omni_light_3d3" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.4141, 5.96046e-08, -16.1624)
+
+[node name="door2" type="AnimatableBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.0157, 0, -16)
+metadata/_edit_group_ = true
+
+[node name="mesh_instance_3d" type="MeshInstance3D" parent="door2"]
+material_override = SubResource("StandardMaterial3D_63yfr")
+mesh = SubResource("BoxMesh_fjyic")
+skeleton = NodePath("../..")
+
+[node name="collision_shape_3d" type="CollisionShape3D" parent="door2"]
+shape = SubResource("BoxShape3D_o8j31")
+
+[node name="weight" type="AnimatableBody3D" parent="." groups=["grabbable"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, -1.75, -13)
+collision_mask = 5
+script = ExtResource("10_4xnju")
+
+[node name="collision_shape_3d" type="CollisionShape3D" parent="weight"]
+shape = SubResource("BoxShape3D_3a8v3")
+
+[node name="mesh_instance_3d" type="MeshInstance3D" parent="weight"]
+material_override = SubResource("StandardMaterial3D_a1k0s")
+mesh = SubResource("BoxMesh_k07ey")
+
+[node name="area_3d" type="Area3D" parent="weight"]
+collision_layer = 4
+collision_mask = 7
+
+[node name="collision_shape_3d" type="CollisionShape3D" parent="weight/area_3d"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0365601, 0.266296, 0.000839233)
+shape = SubResource("BoxShape3D_ipbpr")
+
+[node name="animation_player" type="AnimationPlayer" parent="weight"]
+libraries = {
+"": SubResource("AnimationLibrary_7vqww")
+}
+
+[node name="surveillance_camera" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.37312, -20.6196)
+script = ExtResource("12_1ngdm")
+
+[node name="mesh_instance_3d" type="MeshInstance3D" parent="surveillance_camera"]
+transform = Transform3D(1, 0, 0, 0, -0.2896, -0.957148, 0, 0.957148, -0.2896, 0, 0, 0)
+mesh = SubResource("CylinderMesh_hi3vb")
+
+[connection signal="body_entered" from="weight/area_3d" to="weight" method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="weight/area_3d" to="weight" method="_on_area_3d_body_exited"]
