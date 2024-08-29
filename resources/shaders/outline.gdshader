@@ -28,12 +28,13 @@ void fragment() {
 			screen_wrap_uv *= SCREEN_UV / 1.0;
 			//screen_wrap_uv.y += TIME / 200.0;
 			float noise = texture(blue_noise, screen_wrap_uv).r;
-			if (noise < 0.4) {
+			/*if (noise < 0.4) {
 				ALPHA = 0.6;
 				//ALBEDO.rgb = vec3(0.8,0.8,0.8);
 			} else {
 				ALPHA = 0.4;
-			}
+			} */
+			ALPHA = 1.0;
 
 			ALBEDO = vec3(1.0);
 		} else {

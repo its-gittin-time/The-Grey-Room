@@ -3,7 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://bfj8q3ywfde4n" path="res://materials/yiseraw/yisegrunge_1.jpg" id="1_sh88a"]
 
 [resource]
-albedo_color = Color(0.903825, 0.537529, 0.7839, 1)
+render_priority = 2
+transparency = 4
 metallic = 0.45
 metallic_texture = ExtResource("1_sh88a")
 metallic_texture_channel = 4

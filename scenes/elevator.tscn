@@ -1,0 +1,249 @@
+[gd_scene load_steps=15 format=3 uid="uid://cor381gv7ru0v"]
+
+[ext_resource type="Script" path="res://scripts/elevator.gd" id="1_6odlr"]
+[ext_resource type="PackedScene" uid="uid://cps4bkm1842d0" path="res://models/components/elevator v1.glb" id="1_qxh6c"]
+[ext_resource type="LightmapGIData" uid="uid://vsna0nulnq41" path="res://scenes/lightmaps/elevator.lmbake" id="2_826en"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g8vjo"]
+size = Vector3(3.40076, 0.0479004, 2.99359)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1ntk3"]
+size = Vector3(3.08423, 0.284607, 2.99438)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_047pu"]
+size = Vector3(3.33354, 5.07312, 0.284668)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w237o"]
+size = Vector3(0.359863, 5.14329, 3.02869)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ythle"]
+size = Vector3(3.7, 10.6, 0.2)
+
+[sub_resource type="Animation" id="Animation_ohusc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("elevator v1/Armature_011:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.61132, 5.18074, -2.90667)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("elevator v1/Armature_010:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.19166, 5.18074, -2.90667)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("door/collision_shape_3d:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_eov3x"]
+resource_name = "close"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("elevator v1/Armature_011:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-5, 5.181, -2.907), Vector3(-1.61132, 5.18074, -2.90667)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("elevator v1/Armature_010:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(3.687, 5.181, -2.907), Vector3(1.19166, 5.18074, -2.90667)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("door/collision_shape_3d:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_mqmpc"]
+resource_name = "open"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("elevator v1/Armature_011:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-1.61132, 5.18074, -2.90667), Vector3(-5, 5.181, -2.907)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("elevator v1/Armature_010:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1.19166, 5.18074, -2.90667), Vector3(3.687, 5.181, -2.907)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("door/collision_shape_3d:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bmlhq"]
+_data = {
+"RESET": SubResource("Animation_ohusc"),
+"close": SubResource("Animation_eov3x"),
+"open": SubResource("Animation_mqmpc")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_07cqp"]
+size = Vector3(2.27344, 3.78281, 1.70181)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ji41v"]
+size = Vector3(3.42499, 5.00635, 0.29248)
+
+[node name="elevator" type="Node3D"]
+script = ExtResource("1_6odlr")
+
+[node name="static_body_3d" type="StaticBody3D" parent="."]
+
+[node name="collision_shape_3d" type="CollisionShape3D" parent="static_body_3d"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0970983, 0.0723877, 0.0838075)
+shape = SubResource("BoxShape3D_g8vjo")
+
+[node name="collision_shape_3d6" type="CollisionShape3D" parent="static_body_3d"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0722901, 5.01358, 0.106665)
+shape = SubResource("BoxShape3D_1ntk3")
+
+[node name="collision_shape_3d2" type="CollisionShape3D" parent="static_body_3d"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0847086, 2.55586, 1.60552)
+shape = SubResource("BoxShape3D_047pu")
+
+[node name="collision_shape_3d3" type="CollisionShape3D" parent="static_body_3d"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.29925, 2.60659, 0.108093)
+shape = SubResource("BoxShape3D_w237o")
+
+[node name="collision_shape_3d4" type="CollisionShape3D" parent="static_body_3d"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.41521, 2.56381, 0.108093)
+shape = SubResource("BoxShape3D_w237o")
+
+[node name="elevator v1" parent="." instance=ExtResource("1_qxh6c")]
+transform = Transform3D(0.48, 0, 0, 0, 0.48, 0, 0, 0, 0.48, 0, 0, 0)
+
+[node name="wall_sec_049" parent="elevator v1" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.564, 1.849, 2.474)
+
+[node name="Armature_010" parent="elevator v1" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.19166, 5.18074, -2.90667)
+
+[node name="Cube_082" parent="elevator v1/Armature_010/Skeleton3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.40148, 0.25936, -0.21745)
+
+[node name="static_body_3d" type="StaticBody3D" parent="elevator v1/Armature_010" index="1"]
+
+[node name="collision_shape_3d" type="CollisionShape3D" parent="elevator v1/Armature_010/static_body_3d"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35, 0.2, 0)
+shape = SubResource("BoxShape3D_ythle")
+
+[node name="Armature_011" parent="elevator v1" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.61132, 5.18074, -2.90667)
+
+[node name="Cube_080" parent="elevator v1/Armature_011/Skeleton3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.40149, 0.25936, -0.21745)
+
+[node name="static_body_3d" type="StaticBody3D" parent="elevator v1/Armature_011" index="1"]
+
+[node name="collision_shape_3d" type="CollisionShape3D" parent="elevator v1/Armature_011/static_body_3d"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 0.2, 0)
+shape = SubResource("BoxShape3D_ythle")
+
+[node name="animation_player" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_bmlhq")
+}
+
+[node name="omni_light_3d" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0140395, 2.37368, 0.151074)
+light_energy = 0.2
+light_bake_mode = 1
+omni_range = 3.0
+omni_attenuation = 0.0
+
+[node name="lightmap_gi" type="LightmapGI" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.636385, 6.32435, 1.33979)
+use_texture_for_bounces = false
+interior = true
+denoiser_strength = 0.05
+generate_probes_subdiv = 1
+light_data = ExtResource("2_826en")
+
+[node name="area_3d" type="Area3D" parent="."]
+collision_mask = 2
+monitoring = false
+monitorable = false
+
+[node name="collision_shape_3d" type="CollisionShape3D" parent="area_3d"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0253906, 2.36152, 0.144699)
+shape = SubResource("BoxShape3D_07cqp")
+
+[node name="marker_3d" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.49607, 0)
+
+[node name="door" type="StaticBody3D" parent="."]
+
+[node name="collision_shape_3d" type="CollisionShape3D" parent="door"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0965884, 2.67236, -1.32663)
+shape = SubResource("BoxShape3D_ji41v")
+disabled = true
+
+[connection signal="animation_finished" from="animation_player" to="." method="_on_animation_player_animation_finished"]
+[connection signal="body_entered" from="area_3d" to="." method="_on_area_3d_body_entered"]
+
+[editable path="elevator v1"]

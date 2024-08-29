@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://eeegq600fqr1"]
+
+[ext_resource type="Script" path="res://scripts/wire_lock.gd" id="1_5wr08"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_x31wp"]
+size = Vector3(0.980847, 0.758496, 0.55)
+
+[node name="wire_lock" type="Area3D"]
+collision_layer = 16
+collision_mask = 16
+script = ExtResource("1_5wr08")
+
+[node name="marker_3d" type="Marker3D" parent="."]
+
+[node name="collision_shape_3d" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.140424, -0.079248, 0)
+shape = SubResource("BoxShape3D_x31wp")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]

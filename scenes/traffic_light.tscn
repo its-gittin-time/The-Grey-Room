@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://bd78x8h8wedn3"]
+
+[ext_resource type="Script" path="res://scripts/traffic_light.gd" id="1_qrpcr"]
+[ext_resource type="PackedScene" uid="uid://cwjiorvjyk4n2" path="res://models/levels/traffic/traffic light horizontal v1.glb" id="2_47a30"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_fe2qt"]
+height = 4.51078
+radius = 0.860309
+
+[node name="traffic_light" type="StaticBody3D"]
+script = ExtResource("1_qrpcr")
+
+[node name="traffic light horizontal v1" parent="." instance=ExtResource("2_47a30")]
+
+[node name="Cube_182" parent="traffic light horizontal v1" index="0"]
+transform = Transform3D(0.44, 0, 0, 0, 0.44, 0, 0, 0, 0.44, 0, 0, 0)
+
+[node name="collision_shape_3d" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.226, 0)
+shape = SubResource("CylinderShape3D_fe2qt")
+
+[editable path="traffic light horizontal v1"]

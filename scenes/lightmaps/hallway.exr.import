@@ -1,0 +1,26 @@
+[remap]
+
+importer="2d_array_texture"
+type="CompressedTexture2DArray"
+uid="uid://cp52ul6s2fns6"
+path="res://.godot/imported/hallway.exr-d5b514f296b8d9adf158c3f9d3866af3.ctexarray"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://scenes/lightmaps/hallway.exr"
+dest_files=["res://.godot/imported/hallway.exr-d5b514f296b8d9adf158c3f9d3866af3.ctexarray"]
+
+[params]
+
+compress/mode=3
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/channel_pack=1
+mipmaps/generate=false
+mipmaps/limit=-1
+slices/horizontal=1
+slices/vertical=1

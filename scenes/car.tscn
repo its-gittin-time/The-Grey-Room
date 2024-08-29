@@ -1,0 +1,163 @@
+[gd_scene load_steps=9 format=3 uid="uid://bftko3gvb06uv"]
+
+[ext_resource type="Script" path="res://scripts/car.gd" id="1_i6cxj"]
+[ext_resource type="PackedScene" uid="uid://biwcn77s4hhvj" path="res://models/levels/traffic/car model wheels animated v1.glb" id="1_wuayn"]
+[ext_resource type="AudioStream" uid="uid://c0hb0pmovwsvc" path="res://audio/car impact player.mp3" id="3_8c8hg"]
+
+[sub_resource type="Animation" id="Animation_3guep"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("car model wheels animated v1/Cube_180:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("car model wheels animated v1/Cube_179:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("car model wheels animated v1/Cube_178:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("car model wheels animated v1/Cube_177:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_65ywh"]
+resource_name = "spin"
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("car model wheels animated v1/Cube_180:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, -3.14159)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("car model wheels animated v1/Cube_179:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, -3.14159)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("car model wheels animated v1/Cube_178:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, -3.14159)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("car model wheels animated v1/Cube_177:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, -3.14159)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ua88o"]
+_data = {
+"RESET": SubResource("Animation_3guep"),
+"spin": SubResource("Animation_65ywh")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_33rs6"]
+size = Vector3(5.91527, 3.84442, 2.85526)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ij66c"]
+size = Vector3(6.33435, 2.79691, 2.74879)
+
+[node name="car" type="AnimatableBody3D"]
+script = ExtResource("1_i6cxj")
+
+[node name="car model wheels animated v1" parent="." instance=ExtResource("1_wuayn")]
+transform = Transform3D(0.44, 0, 0, 0, 0.44, 0, 0, 0, 0.44, 0, 0, 0)
+
+[node name="Cube_179" parent="car model wheels animated v1" index="4"]
+transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, -5.16053, 0.596289, -2.5244)
+
+[node name="animation_player" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ua88o")
+}
+autoplay = "spin"
+speed_scale = 2.0
+
+[node name="collision_shape_3d" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.479698, 1.76796, -0.020462)
+shape = SubResource("BoxShape3D_33rs6")
+disabled = true
+
+[node name="car_exlpode" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[node name="area_3d" type="Area3D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="collision_shape_3d" type="CollisionShape3D" parent="area_3d"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0768014, 1.23885, -0.00693384)
+shape = SubResource("BoxShape3D_ij66c")
+
+[node name="impact" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_8c8hg")
+
+[connection signal="timeout" from="car_exlpode" to="." method="_on_car_exlpode_timeout"]
+[connection signal="body_entered" from="area_3d" to="." method="_on_area_3d_body_entered"]
+
+[editable path="car model wheels animated v1"]

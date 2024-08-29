@@ -13,7 +13,6 @@ process_mode = 3
 background_energy_multiplier = 4.08
 sky = SubResource("Sky_cci3v")
 tonemap_mode = 2
-ssao_enabled = true
 glow_levels/1 = 1.0
 glow_levels/3 = 2.0
 glow_levels/5 = 2.0

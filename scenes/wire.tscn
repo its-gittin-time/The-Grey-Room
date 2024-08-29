@@ -1,0 +1,63 @@
+[gd_scene load_steps=7 format=3 uid="uid://dq7egvltsrscn"]
+
+[ext_resource type="Script" path="res://scripts/wire.gd" id="1_2cx5u"]
+[ext_resource type="Shader" path="res://resources/shaders/outline.gdshader" id="2_lfmpm"]
+
+[sub_resource type="Curve3D" id="Curve3D_0fp7m"]
+bake_interval = 0.05
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, -0.5, 0, 0, 0, 0, 0, 0.5, 0, 0, 0, 0, -0.001, -0.31, 0),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g6a2w"]
+transparency = 4
+albedo_color = Color(0, 0, 0, 1)
+roughness = 0.5
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mihda"]
+render_priority = 0
+shader = ExtResource("2_lfmpm")
+shader_parameter/enabled = false
+shader_parameter/thickness = 2.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vq8x1"]
+size = Vector3(0.2, 0.2, 0.2)
+
+[node name="wire" type="Marker3D" groups=["wire"]]
+top_level = true
+gizmo_extents = 2.0
+script = ExtResource("1_2cx5u")
+wire_colour = Color(0, 0, 0, 1)
+
+[node name="path_3d" type="Path3D" parent="."]
+curve = SubResource("Curve3D_0fp7m")
+
+[node name="csg_polygon_3d" type="CSGPolygon3D" parent="." groups=["interactable"]]
+material_override = SubResource("StandardMaterial3D_g6a2w")
+material_overlay = SubResource("ShaderMaterial_mihda")
+gi_mode = 0
+calculate_tangents = false
+use_collision = true
+collision_layer = 8
+collision_mask = 8
+polygon = PackedVector2Array(0, 0.05, 0.0191342, 0.046194, 0.0353553, 0.0353553, 0.046194, 0.0191342, 0.05, 3.06152e-18, 0.046194, -0.0191342, 0.0353553, -0.0353553, 0.0191342, -0.046194, 6.12303e-18, -0.05, -0.0191342, -0.046194, -0.0353553, -0.0353553, -0.046194, -0.0191342, -0.05, -9.18455e-18, -0.046194, 0.0191342, -0.0353553, 0.0353553, -0.0191342, 0.046194)
+mode = 2
+path_node = NodePath("../path_3d")
+path_interval_type = 0
+path_interval = 0.2
+path_simplify_angle = 0.0
+path_rotation = 1
+path_local = true
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false
+smooth_faces = true
+
+[node name="area_3d" type="Area3D" parent="."]
+collision_layer = 16
+collision_mask = 16
+
+[node name="collision_shape_3d" type="CollisionShape3D" parent="area_3d"]
+shape = SubResource("BoxShape3D_vq8x1")

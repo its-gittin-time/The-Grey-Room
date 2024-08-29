@@ -1,8 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://bigc75ae48mug"]
+[gd_scene load_steps=11 format=3 uid="uid://bigc75ae48mug"]
 
 [ext_resource type="Script" path="res://scripts/bean.gd" id="1_4tbci"]
 [ext_resource type="Shader" path="res://resources/shaders/blindness_2d.gdshader" id="2_mc70e"]
-[ext_resource type="Shader" path="res://resources/shaders/dither.gdshader" id="3_ymg3y"]
+[ext_resource type="AudioStream" uid="uid://by1r8v5egvxw8" path="res://audio/item pickup.mp3" id="4_e17bh"]
 [ext_resource type="Texture2D" uid="uid://pxc8w1v4ytr3" path="res://textures/circle outline3.png" id="6_vrrpo"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h0xsp"]
@@ -18,18 +18,13 @@ rings = 2
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0q2c2"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4l462"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_lbvra"]
-shader = ExtResource("2_mc70e")
-shader_parameter/colour_levels = 8.0
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_d5wlr"]
-shader = ExtResource("3_ymg3y")
-shader_parameter/spread = 1.0
-shader_parameter/colour_levels = 16.0
+size = Vector3(0.5, 0.5, 0.5)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_5iu4r"]
 light_mode = 1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lbvra"]
+shader = ExtResource("2_mc70e")
 
 [node name="bean" type="CharacterBody3D" node_paths=PackedStringArray("camera", "interact_ray", "joint", "hand")]
 collision_layer = 2
@@ -58,7 +53,7 @@ current = true
 
 [node name="interact_ray" type="RayCast3D" parent="camera"]
 target_position = Vector3(0, 0, -2.5)
-collision_mask = 4
+collision_mask = 12
 
 [node name="joint" type="Generic6DOFJoint3D" parent="camera"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
@@ -86,10 +81,58 @@ input_ray_pickable = false
 shape = SubResource("BoxShape3D_4l462")
 disabled = true
 
+[node name="canvas_layer2" type="CanvasLayer" parent="."]
+
+[node name="center_container" type="CenterContainer" parent="canvas_layer2"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="crosshair" type="TextureRect" parent="canvas_layer2/center_container"]
+self_modulate = Color(1, 1, 1, 0.776471)
+texture_filter = 2
+material = SubResource("CanvasItemMaterial_5iu4r")
+layout_mode = 2
+texture = ExtResource("6_vrrpo")
+
+[node name="fade" type="ColorRect" parent="canvas_layer2"]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="loading" type="Label" parent="canvas_layer2"]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 48
+text = "Loading..."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="label" type="Label" parent="."]
+visible = false
+offset_right = 40.0
+offset_bottom = 23.0
+
 [node name="canvas_layer" type="CanvasLayer" parent="."]
 
-[node name="color_rect" type="ColorRect" parent="canvas_layer"]
-texture_filter = 1
+[node name="blindness_2d" type="ColorRect" parent="canvas_layer"]
 material = SubResource("ShaderMaterial_lbvra")
 anchors_preset = 15
 anchor_right = 1.0
@@ -97,35 +140,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="canvas_layer2" type="CanvasLayer" parent="."]
-
-[node name="color_rect2" type="ColorRect" parent="canvas_layer2"]
-visible = false
-material = SubResource("ShaderMaterial_d5wlr")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="center_container" type="CenterContainer" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="crosshair" type="TextureRect" parent="center_container"]
-self_modulate = Color(1, 1, 1, 0.776471)
-texture_filter = 2
-material = SubResource("CanvasItemMaterial_5iu4r")
-layout_mode = 2
-texture = ExtResource("6_vrrpo")
-
-[node name="label" type="Label" parent="."]
-offset_right = 40.0
-offset_bottom = 23.0
-
-[node name="label2" type="Label" parent="."]
-offset_right = 40.0
-offset_bottom = 23.0
+[node name="pickup" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_e17bh")
+volume_db = 2.0

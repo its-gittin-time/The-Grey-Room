@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://bve1dr6lbnxe2"]
+
+[ext_resource type="Texture2D" uid="uid://dqml5mevvliks" path="res://materials/yiseraw/roses2.png" id="1_wi2fp"]
+[ext_resource type="Texture2D" uid="uid://bfj8q3ywfde4n" path="res://materials/yiseraw/yisegrunge_1.jpg" id="2_s4sl5"]
+
+[resource]
+albedo_texture = ExtResource("1_wi2fp")
+roughness_texture = ExtResource("2_s4sl5")

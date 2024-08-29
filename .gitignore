@@ -29,6 +29,7 @@ ost/
 *.ogg
 *.wav
 
+textures/
 *.png
 *.jpg
 *.webp
@@ -38,5 +39,11 @@ models/
 *.glb
 *.gltf
 *.fbx
+*.blend1
 
-*.tmp
+nupkg/
+bin/
+obj/
+.generated/
+.vs/
+.DS_Store

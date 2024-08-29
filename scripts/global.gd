@@ -1,13 +1,23 @@
 extends Node
 
 const main_menu = preload("res://scenes/main_menu.tscn")
+var bean : Bean
+var preserved_rotation : Vector3
+var preserved_position : Vector3
+var preserved_cam_tilt := 0.0
+func _ready() -> void:
+	if OS.has_feature("editor"):
+		get_tree().root.mode = Window.MODE_WINDOWED
+		get_tree().root.size = Vector2i(1280,720)
+		get_tree().root.move_to_center()
+	get_tree().root.min_size = Vector2i(640,360)
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("fullscreen") and OS.get_name() != "Web":
-		if get_window().mode != Window.MODE_EXCLUSIVE_FULLSCREEN:
-			get_window().mode = Window.MODE_EXCLUSIVE_FULLSCREEN
+		if get_tree().root.mode != Window.MODE_EXCLUSIVE_FULLSCREEN:
+			get_tree().root.mode = Window.MODE_EXCLUSIVE_FULLSCREEN
 		else:
-			get_window().mode = Window.MODE_WINDOWED
+			get_tree().root.mode = Window.MODE_MAXIMIZED
 
 const NORMAL_VISION = Basis(
 	Vector3(1.0,0.0,0.0),

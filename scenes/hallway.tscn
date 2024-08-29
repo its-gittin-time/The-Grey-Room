@@ -1,0 +1,60 @@
+[gd_scene load_steps=6 format=3 uid="uid://cui2bayw0xy1e"]
+
+[ext_resource type="PackedScene" uid="uid://bknjloajm6kk8" path="res://models/components/passage section v2.glb" id="1_7bd38"]
+[ext_resource type="LightmapGIData" uid="uid://cpgeyr1oapn5i" path="res://scenes/lightmaps/hallway.lmbake" id="2_m2r8y"]
+[ext_resource type="Environment" uid="uid://benpu7pj0ijv1" path="res://resources/indoor_environment.tres" id="3_ueijp"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lh0hu"]
+size = Vector3(3.4, 0.183594, 19)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tjna0"]
+size = Vector3(0.2, 5.1, 19)
+
+[node name="hallway" type="Node3D"]
+
+[node name="passage section v2" parent="." instance=ExtResource("1_7bd38")]
+
+[node name="wall_sec_051" parent="passage section v2" index="0"]
+transform = Transform3D(0.48, 0, 0, 0, 0.48, 0, 0, 0, 0.48, 0, 0, 0)
+
+[node name="omni_light_3d" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.74246, 1.5008, -14.2864)
+light_energy = 0.2
+omni_range = 8.0
+omni_attenuation = 0.0
+
+[node name="omni_light_3d2" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.74246, 1.5008, -4.67372)
+light_energy = 0.2
+omni_range = 8.0
+omni_attenuation = 0.0
+
+[node name="lightmap_gi" type="LightmapGI" parent="."]
+use_texture_for_bounces = false
+interior = true
+environment_mode = 0
+generate_probes_subdiv = 1
+light_data = ExtResource("2_m2r8y")
+
+[node name="world_environment" type="WorldEnvironment" parent="."]
+environment = ExtResource("3_ueijp")
+
+[node name="static_body_3d" type="StaticBody3D" parent="."]
+
+[node name="collision_shape_3d" type="CollisionShape3D" parent="static_body_3d"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6, -0.808203, -8.9)
+shape = SubResource("BoxShape3D_lh0hu")
+
+[node name="collision_shape_3d2" type="CollisionShape3D" parent="static_body_3d"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6, 4.09814, -8.9)
+shape = SubResource("BoxShape3D_lh0hu")
+
+[node name="collision_shape_3d3" type="CollisionShape3D" parent="static_body_3d"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2, 1.63994, -8.9)
+shape = SubResource("BoxShape3D_tjna0")
+
+[node name="collision_shape_3d4" type="CollisionShape3D" parent="static_body_3d"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0999998, 1.63994, -8.9)
+shape = SubResource("BoxShape3D_tjna0")
+
+[editable path="passage section v2"]

@@ -11,23 +11,38 @@ config_version=5
 [application]
 
 config/name="The Grey Room"
-run/main_scene="res://scenes/tutorial.tscn"
+run/main_scene="res://scenes/main_menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://textures/icon.svg"
+
+[audio]
+
+buses/default_bus_layout="res://resources/default_bus_layout.tres"
+driver/mix_rate.web=44100
 
 [autoload]
 
 Global="*res://scripts/global.gd"
 
+[debug]
+
+gdscript/warnings/untyped_declaration=1
+gdscript/warnings/assert_always_false=2
+gdscript/warnings/integer_division=2
+gdscript/warnings/narrowing_conversion=2
+
 [display]
 
-window/size/viewport_width=1280
-window/size/viewport_height=720
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/size/mode=2
+window/stretch/mode="canvas_items"
 
 [editor]
 
 naming/node_name_casing=2
 naming/script_name_casing=2
+export/convert_text_resources_to_binary=false
 
 [file_customization]
 
@@ -50,15 +65,19 @@ import/blender/enabled=false
 grabbable=""
 interactable=""
 box=""
+wire=""
 
 [gui]
 
 theme/custom="res://resources/global_theme.tres"
+theme/custom_font="res://resources/fonts/IBMPlexSans-Medium.ttf"
 
 [importer_defaults]
 
 scene={
-"meshes/generate_lods": false
+"gltf/embedded_image_handling": 0,
+"meshes/generate_lods": false,
+"meshes/light_baking": 2
 }
 3d_texture={
 "mipmaps/limit": 3
@@ -155,10 +174,27 @@ rendering/root_node_auto_translate=false
 3d_physics/layer_1="Building"
 3d_physics/layer_2="Player"
 3d_physics/layer_3="Interactable"
+3d_physics/layer_4="Wire"
+3d_physics/layer_5="Lock"
+
+[network]
+
+limits/debugger/max_queued_messages=4096
 
 [rendering]
 
-shader_compiler/shader_cache/strip_debug=true
+textures/vram_compression/import_etc2_astc=true
+lights_and_shadows/directional_shadow/size=2048
+reflections/sky_reflections/roughness_layers=6
+global_illumination/gi/use_half_resolution=true
+camera/depth_of_field/depth_of_field_bokeh_shape=0
+environment/ssao/quality=1
+environment/glow/upscale_mode=0
+environment/volumetric_fog/volume_size=16
+environment/volumetric_fog/volume_depth=32
+environment/volumetric_fog/use_filter=0
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)
+lightmapping/denoising/denoiser=1
 anti_aliasing/quality/msaa_3d=1
 anti_aliasing/quality/screen_space_aa=1
 anti_aliasing/quality/use_debanding=true

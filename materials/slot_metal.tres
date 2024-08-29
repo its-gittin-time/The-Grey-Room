@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bxj4fo61q3dyl" path="res://materials/yiseraw/yisen_normal.jpg" id="2_iud0y"]
 
 [resource]
+cull_mode = 2
 albedo_color = Color(0.572549, 0.572549, 0.572549, 1)
 metallic = 1.0
 metallic_texture = ExtResource("1_7hwl5")

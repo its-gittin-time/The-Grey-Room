@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bqagck4mefo1w"
 path.s3tc="res://.godot/imported/bluetooth.jpg-d593b1fcf040ace2f26fad334356c662.s3tc.ctex"
+path.etc2="res://.godot/imported/bluetooth.jpg-d593b1fcf040ace2f26fad334356c662.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://textures/bluetooth.jpg"
-dest_files=["res://.godot/imported/bluetooth.jpg-d593b1fcf040ace2f26fad334356c662.s3tc.ctex"]
+dest_files=["res://.godot/imported/bluetooth.jpg-d593b1fcf040ace2f26fad334356c662.s3tc.ctex", "res://.godot/imported/bluetooth.jpg-d593b1fcf040ace2f26fad334356c662.etc2.ctex"]
 
 [params]
 

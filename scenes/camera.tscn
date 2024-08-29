@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://d1env2oxkmrct"]
+
+[ext_resource type="Script" path="res://scripts/surveillance_cam.gd" id="1_l1ref"]
+[ext_resource type="PackedScene" uid="uid://bo61o3jwq81uv" path="res://models/components/sec camera fixed uv.glb" id="1_wup5j"]
+
+[node name="camera" type="Node3D"]
+transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0, 0, 0)
+script = ExtResource("1_l1ref")
+
+[node name="sec camera fixed uv" parent="." instance=ExtResource("1_wup5j")]
+
+[node name="Cube_098" parent="sec camera fixed uv" index="0"]
+transform = Transform3D(0.792, 6.92388e-08, 0, -6.92388e-08, 0.792, 0, 0, 0, -0.722, 0, 0, 0)
+gi_mode = 2
+
+[node name="Armature_013" parent="sec camera fixed uv" index="1"]
+transform = Transform3D(0.0488296, 0.215785, 0.664118, 0, 0.66574, -0.216312, -0.698295, 0.0150892, 0.0464397, -0.000497614, 0.0080181, -0.0256348)
+
+[node name="Cylinder_069" parent="sec camera fixed uv/Armature_013/Skeleton3D" index="0"]
+transform = Transform3D(0.934936, 0, 0, 0, 0, -0.934936, 0, 0.934936, 0, 2.38419e-07, 1.22663, 1.52445)
+
+[editable path="sec camera fixed uv"]

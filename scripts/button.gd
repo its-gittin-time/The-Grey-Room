@@ -25,4 +25,3 @@ func push() -> void:
 	push_tween.tween_property(self, "position", original_position, push_time)
 	await push_tween.finished
 	pushing = false
-	

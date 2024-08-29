@@ -7,10 +7,9 @@
 [ext_resource type="Environment" uid="uid://benpu7pj0ijv1" path="res://resources/indoor_environment.tres" id="7_cbxc7"]
 [ext_resource type="PackedScene" uid="uid://cps4bkm1842d0" path="res://models/components/elevator v1.glb" id="7_v7s05"]
 [ext_resource type="Script" path="res://scripts/interactable.gd" id="7_xnfgh"]
-[ext_resource type="Shape3D" uid="uid://cdl0yh30jsnu1" path="res://scenes/test_level_box_room.shape" id="9_3tqq5"]
+[ext_resource type="Shape3D" uid="uid://wtf8bqvyx6ox" path="res://scenes/collision shapes/test_level_box_room.shape" id="9_2ygf1"]
 [ext_resource type="PackedScene" uid="uid://dgempyk1u0mpk" path="res://models/levels/box/box weighing level w slots v7.glb" id="9_o325s"]
-[ext_resource type="VoxelGIData" uid="uid://bp4yjbxq4vjug" path="res://scenes/test_voxel_gi_data.res" id="10_i7fjm"]
-[ext_resource type="PackedScene" uid="uid://bill2j5kscb30" path="res://scenes/weighted_box.tscn" id="13_kmste"]
+[ext_resource type="PackedScene" uid="uid://cor381gv7ru0v" path="res://scenes/elevator.tscn" id="11_1d56h"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_eru3k"]
 size = Vector3(100, 1, 100)
@@ -76,6 +75,11 @@ height = 0.5
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_faw3b"]
 height = 0.5
+
+[sub_resource type="VoxelGIData" id="VoxelGIData_wxe51"]
+propagation = 0.7
+use_two_bounces = false
+interior = true
 
 [node name="Node3D" type="Node3D"]
 
@@ -146,6 +150,21 @@ shape = SubResource("CylinderShape3D_faw3b")
 [node name="elevator v1" parent="." instance=ExtResource("7_v7s05")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.2189, -1.5, 0.637511)
 
+[node name="Armature_010" parent="elevator v1" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.05555, 5.18074, -2.90667)
+
+[node name="Cube_082" parent="elevator v1/Armature_010/Skeleton3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.40148, 0.25936, -0.21745)
+
+[node name="Cube_082" parent="elevator v1/Armature_010/Skeleton3D/Cube_082" index="0"]
+transform = Transform3D(0.999956, -0.00933738, 0, 0.00933738, 0.999956, 0, 0, 0, 1, -0.913708, 0, 0)
+
+[node name="Armature_011" parent="elevator v1" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.69452, 5.18074, -2.90667)
+
+[node name="Cube_080" parent="elevator v1/Armature_011/Skeleton3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.40149, 0.25936, -0.21745)
+
 [node name="world_environment" type="WorldEnvironment" parent="."]
 environment = ExtResource("7_cbxc7")
 
@@ -169,23 +188,22 @@ omni_range = 14.0
 [node name="box weighing level w slots v7" parent="." instance=ExtResource("9_o325s")]
 transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, -15.5771, -1.51846, -23.3557)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="box weighing level w slots v7/Plane_031" index="0"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="box weighing level w slots v7/Plane_031/StaticBody3D"]
-shape = ExtResource("9_3tqq5")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="box weighing level w slots v7"]
+transform = Transform3D(1.09189, 0, 0, 0, 1.09189, 0, 0, 0, 1.09189, -18.2161, 14.0361, 17.1544)
+shape = ExtResource("9_2ygf1")
 
 [node name="voxel_gi" type="VoxelGI" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.4645, 1.71582, -24.2573)
+subdiv = 0
 size = Vector3(18.7963, 7.34375, 19.1152)
-data = ExtResource("10_i7fjm")
+data = SubResource("VoxelGIData_wxe51")
 
-[node name="weighted_box" parent="." instance=ExtResource("13_kmste")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.6223, 0, -21.4592)
+[node name="slots" type="Node3D" parent="."]
 
-[node name="weighted_box2" parent="." instance=ExtResource("13_kmste")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.6223, 0, -25.8168)
+[node name="elevator" parent="." instance=ExtResource("11_1d56h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7.01424)
+next_scene = "res://scenes/level_1.tscn"
+spawn_elevator = true
 
-[node name="weighted_box3" parent="." instance=ExtResource("13_kmste")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.2871, 0, -21.4592)
-
+[editable path="elevator v1"]
 [editable path="box weighing level w slots v7"]
